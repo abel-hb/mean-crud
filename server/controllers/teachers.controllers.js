@@ -22,11 +22,24 @@ teacherCtrl.getTeacher =  async (req, res) =>{
 }
 
 
-teacherCtrl.editTeacher = function(){
+teacherCtrl.editTeacher = async (req, res) =>{
+    const { id } = req.params;
+    const teacher = {
+        name: req.body.name,
+        surname: req.body.surname,
+        area: req.body.area,
+        salary: req.body.salary
+    }
 
+    await Teacher.findByIdAndUpdate(id, {$set:teacher}, {new:true});
+    res.json({status: "Teacher update"});
 }
 
-teacherCtrl.deleteTeacher = function(){
+
+teacherCtrl.deleteTeacher = async (req, res) =>{
+     await Teacher.findByIdAndDelete(req.params.id);
+     res.json({status: 'Teacher deleted'});
+
 
 }
 

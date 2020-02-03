@@ -18,7 +18,7 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 //Routes
 app.use('/api/teachers', require('./routers/teachers.routers'));
-
+app.use('/api/users', require('./routers/users.routers'));
 
 
 //Starting the server
